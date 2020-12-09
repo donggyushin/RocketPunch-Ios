@@ -12,12 +12,34 @@ class SignUpController: UIViewController {
     // MARK: - Properties
     var userId:String?
     var userPw:String?
+    var profileImage:UIImage? {
+        didSet {
+            guard let profileImage = profileImage else { return }
+            self.uploadProfileImageInput.imageView.image = profileImage
+        }
+    }
+    
+    private lazy var imagePicker:ImagePicker = {
+        let ip = ImagePicker(presentationController: self, delegate: self)
+        return ip
+    }()
     
     
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.text = "회원가입"
         return label
+    }()
+    
+    private lazy var uploadProfileImageInput:UploadProfileImageView = {
+        let input = UploadProfileImageView()
+        input.translatesAutoresizingMaskIntoConstraints = false
+        input.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        input.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        input.layer.cornerRadius = 50
+        input.delegate = self
+        input.isUserInteractionEnabled = true 
+        return input
     }()
     
     private lazy var userIdTextField:TextInputTypeOne = {
@@ -76,12 +98,17 @@ extension SignUpController {
         Stack.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -20).isActive = true
         Stack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         Stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addSubview(uploadProfileImageInput)
+        uploadProfileImageInput.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        uploadProfileImageInput.bottomAnchor.constraint(equalTo: Stack.topAnchor, constant: -50).isActive = true 
     }
     
     func configureKeyboard() {
         dismissKeyboardByTouchingAnywhere()
         moveViewWhenKeyboardAppeared()
     }
+
 }
 
 
@@ -96,5 +123,19 @@ extension SignUpController:TextInputTypeOneDelegate {
         if textInput == userPwTextField {
             self.userPw = text
         }
+    }
+}
+
+extension SignUpController:ImagePickerDelegate {
+    func didSelect(image: UIImage?) {
+        guard let image = image else { return }
+        self.profileImage = image
+    }
+}
+
+
+extension SignUpController:UploadProfileImageViewProtocol {
+    func uploadProfileImageView(sender: UploadProfileImageView) {
+        self.imagePicker.present(from: sender)
     }
 }
