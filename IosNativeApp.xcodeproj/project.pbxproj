@@ -29,6 +29,7 @@
 		7072D74925825B0B00A30009 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74825825B0B00A30009 /* UserModel.swift */; };
 		7072D74D25825E0500A30009 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74C25825E0500A30009 /* LoadingView.swift */; };
 		7072D75025825F9600A30009 /* UIViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74F25825F9600A30009 /* UIViewExtenstions.swift */; };
+		707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707D260825827C2D00B784C9 /* UserCellTypeOne.swift */; };
 		707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DD43725812A37002CDBC8 /* ImagePicker.swift */; };
 		70D7B881258120340022E3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70D7B880258120340022E3E3 /* GoogleService-Info.plist */; };
 		70D7B88F258120E50022E3E3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7B88E258120E50022E3E3 /* DataService.swift */; };
@@ -60,6 +61,7 @@
 		7072D74825825B0B00A30009 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7072D74C25825E0500A30009 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7072D74F25825F9600A30009 /* UIViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstions.swift; sourceTree = "<group>"; };
+		707D260825827C2D00B784C9 /* UserCellTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellTypeOne.swift; sourceTree = "<group>"; };
 		707DD43725812A37002CDBC8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		70D7B880258120340022E3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70D7B88E258120E50022E3E3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 		706FC1752580F165000A97E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				707D260725827C1800B784C9 /* Users */,
 				706FC1762580F1B6000A97E5 /* TextInputTypeOne.swift */,
 				70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */,
 				7072D74C25825E0500A30009 /* LoadingView.swift */,
@@ -226,6 +229,14 @@
 				7072D74825825B0B00A30009 /* UserModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		707D260725827C1800B784C9 /* Users */ = {
+			isa = PBXGroup;
+			children = (
+				707D260825827C2D00B784C9 /* UserCellTypeOne.swift */,
+			);
+			path = Users;
 			sourceTree = "<group>";
 		};
 		7A606C0E257BDE99ACBC7802 /* Frameworks */ = {
@@ -362,6 +373,7 @@
 				706FC1732580EFFD000A97E5 /* SignInController.swift in Sources */,
 				702811D12580E6480037E9BF /* AppDelegate.swift in Sources */,
 				70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */,
+				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
 				706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */,
 				7072D75025825F9600A30009 /* UIViewExtenstions.swift in Sources */,
