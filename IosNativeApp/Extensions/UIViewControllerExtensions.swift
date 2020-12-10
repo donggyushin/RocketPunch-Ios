@@ -25,6 +25,7 @@ extension UIViewController {
     
     func dismissKeyboardByTouchingAnywhere() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardSelector))
+        tap.cancelsTouchesInView = true
         view.addGestureRecognizer(tap)
     }
     

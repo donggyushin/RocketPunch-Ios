@@ -43,7 +43,8 @@ class SignInController: UIViewController {
     private lazy var loginButton:UIButton = {
         let bt = UIButton(type: UIButton.ButtonType.system)
         bt.setTitle("로그인", for: UIControl.State.normal)
-        bt.heightAnchor.constraint(equalToConstant: 50).isActive = true 
+        bt.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        bt.addTarget(self, action: #selector(signInButtonTapped), for: UIControl.Event.touchUpInside)
         return bt
     }()
     
@@ -71,6 +72,11 @@ class SignInController: UIViewController {
         bt.addTarget(self, action: #selector(signUpButtonTapped), for: UIControl.Event.touchUpInside)
         return bt
     }()
+    
+    private lazy var loadingView:LoadingView = {
+        let lv = LoadingView()
+        return lv
+    }()
 
     // MARK: - Lifecylces
     override func viewDidLoad() {
@@ -91,6 +97,37 @@ extension SignInController {
         navigationController?.pushViewController(signUpController, animated: true)
     }
     
+    @objc func signInButtonTapped(sender:UIButton) {
+        guard let id = self.userId else { return self.renderAlertTypeOne(title: nil, message: "아이디를 입력해주세요", action: nil, completion: nil)}
+        guard let pw = self.userPw else { return self.renderAlertTypeOne(title: nil, message: "비밀번호를 입력해주세요", action: nil, completion: nil)}
+        
+        loadingView.isHidden = false
+        
+        UserService.shared.signIn(id: id, pw: pw) { (error, errorMessage, success, user, token) in
+            self.loadingView.isHidden = true
+            if let errorMessage = errorMessage {
+                return self.renderAlertTypeOne(title: nil, message: errorMessage, action: nil, completion: nil)
+            }
+            
+            if let error = error {
+                return self.renderAlertTypeOne(title: nil, message: error.localizedDescription, action: nil, completion: nil)
+            }
+            
+            if success == false {
+                return self.renderAlertTypeOne(title: nil, message: "알 수 없는 에러 발생", action: nil, completion: nil)
+            }
+            
+            guard let user = user else { return }
+            guard let token = token else { return }
+            
+            let rootController = RootConstants.shared.rootController
+            rootController.user = user
+            rootController.loginUser(token: token)
+            self.dismiss(animated: true, completion: nil)
+            
+        }
+    }
+    
 }
 
 // MARK: - Configures
@@ -105,6 +142,9 @@ extension SignInController {
         signUpControllerButton.translatesAutoresizingMaskIntoConstraints = false
         signUpControllerButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20).isActive = true
         signUpControllerButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addView(view: loadingView, left: 0, top: 0, right: 0, bottom: 0, width: nil, height: nil, centerX: false, centerY: false)
+        loadingView.isHidden = true
         
     }
     
