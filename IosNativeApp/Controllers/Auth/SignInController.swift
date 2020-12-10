@@ -98,12 +98,8 @@ extension SignInController {
     func configureUI(){
         view.backgroundColor = .systemBackground
         
-        view.addSubview(Stack)
-        Stack.translatesAutoresizingMaskIntoConstraints = false
-        Stack.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 20).isActive = true
-        Stack.rightAnchor.constraint(equalTo: view.rightAnchor,constant: -20).isActive = true
-        Stack.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        Stack.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        
+        view.addView(view: Stack, left: 20, top: nil, right: 20, bottom: nil, width: nil, height: nil, centerX: true, centerY: true)
         
         view.addSubview(signUpControllerButton)
         signUpControllerButton.translatesAutoresizingMaskIntoConstraints = false

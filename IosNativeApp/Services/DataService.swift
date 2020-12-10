@@ -15,14 +15,15 @@ class DataService {
     
     func uploadImage(image:UIImage, completion:@escaping(Error?, String?, Bool, String?) -> Void) {
         let uuid = NSUUID().uuidString
-        let storageRef = storage.reference().child("images").child("\(uuid).jpg")
+        let storageRef = storage.reference()
+        let profileImageRef = storageRef.child("images/\(uuid).jpg")
         guard let data = image.pngData() else { return completion(nil, "이미지를 데이터화 시키던 도중에 에러가 발생하였습니다.", false, nil)}
-        let uploadTask = storageRef.putData(data, metadata: nil) { (metadata, error) in
+        let uploadTask = profileImageRef.putData(data, metadata: nil) { (metadata, error) in
             if let error = error {
                 return completion(error, nil, false, nil)
             }
             
-            storageRef.downloadURL { (url, error) in
+            profileImageRef.downloadURL { (url, error) in
                 if let error = error {
                     return completion(error, nil, false, nil)
                 }

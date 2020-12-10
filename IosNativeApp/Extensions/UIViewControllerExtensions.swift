@@ -9,6 +9,13 @@ import UIKit
 
 extension UIViewController {
     
+    func renderAlertTypeOne(title:String?, message:String, action:((UIAlertAction) -> Void)?, completion:(() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "네", style: UIAlertAction.Style.default, handler: action))
+        self.present(alert, animated: true, completion: completion)
+    }
+    
     
     func clearNavigationBackground() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)

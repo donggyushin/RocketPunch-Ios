@@ -10,8 +10,12 @@ class DeviceDataService {
     
     let defaults = UserDefaults.standard
     
+    func removingDeviceData(key:String) {
+        defaults.removeObject(forKey: key)
+    }
+    
     func settingDeviceData(key:String, value:String) {
-        defaults.set(key, forKey: value)
+        defaults.set(value, forKey: key)
     }
     
     func gettingDeviceData(key:String) -> String? {

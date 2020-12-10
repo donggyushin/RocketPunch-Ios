@@ -10,6 +10,14 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class UsersController: UICollectionViewController {
+    
+    // MARK: - Properties
+    private lazy var logoutButton:UIButton = {
+        let bt = UIButton(type: UIButton.ButtonType.system)
+        bt.setTitle("로그아웃", for: UIControl.State.normal)
+        bt.addTarget(self, action: #selector(logoutButtonTapped), for: UIControl.Event.touchUpInside)
+        return bt
+    }()
 
     // MARK: - Lifecycles
     
@@ -29,6 +37,7 @@ class UsersController: UICollectionViewController {
 
         // Do any additional setup after loading the view.
         configureUI()
+        configureNav()
     }
 
     
@@ -62,6 +71,18 @@ class UsersController: UICollectionViewController {
 extension UsersController {
     func configureUI() {
         collectionView.backgroundColor = .systemBackground
+    }
+    
+    func configureNav() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
+        
+    }
+}
+
+// MARK: Selectors
+extension UsersController {
+    @objc func logoutButtonTapped(sender:UIButton) {
+        RootConstants.shared.rootController.logoutUser()
     }
 }
 

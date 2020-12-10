@@ -7,5 +7,6 @@ target 'IosNativeApp' do
 
   # Pods for IosNativeApp
   pod 'Firebase/Storage'
+  pod 'Alamofire', '~> 5.2'
 
 end

@@ -9,6 +9,10 @@ import UIKit
 
 class RootController: UITabBarController {
     
+    // MARK: Properties
+    var user:UserModel?
+    
+    
     // MARK: - Lifecycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,8 +21,6 @@ class RootController: UITabBarController {
         
     }
     
-    
-
 }
 
 
@@ -76,6 +78,12 @@ extension RootController {
     func loginUser(token:String) {
         DeviceDataService.shared.settingDeviceData(key: AuthConstants.AUTH_TOKEN, value: token)
         configureControllers()
+    }
+    
+    func logoutUser() {
+        DeviceDataService.shared.removingDeviceData(key: AuthConstants.AUTH_TOKEN)
+        user = nil
+        presentAuthController()
     }
     
 }
