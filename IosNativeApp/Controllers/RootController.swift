@@ -10,7 +10,11 @@ import UIKit
 class RootController: UITabBarController {
     
     // MARK: Properties
-    var user:UserModel?
+    var user:UserModel? {
+        didSet {
+            RootConstants.shared.usersController?.me  = user
+        }
+    }
     
     
     // MARK: - Lifecycles
@@ -48,6 +52,29 @@ extension RootController {
     }
 }
 
+// MARK: APIs
+extension RootController {
+    func fetchMe(token:String) {
+        print("fetchMe")
+        UserService.shared.fetchMe(token: token) { (error, errorMessage, success, user) in
+            if let errorMessage = errorMessage {
+                return self.renderAlertTypeOne(title: nil, message: errorMessage, action: nil, completion: nil)
+            }
+            
+            if let error = error {
+                return self.renderAlertTypeOne(title: nil, message: error.localizedDescription, action: nil, completion: nil)
+            }
+            
+            if !success {
+                return self.renderAlertTypeOne(title: nil, message: "알 수 없는 에러 발생", action: nil, completion: nil)
+            }
+            
+            guard let user = user else { return }
+            self.user = user
+        }
+    }
+}
+
 // MARK: Helpers
 extension RootController {
     func appInit() {
@@ -61,6 +88,7 @@ extension RootController {
         }else {
             
             loginUser(token: token!)
+            fetchMe(token:token!)
         }
     }
     

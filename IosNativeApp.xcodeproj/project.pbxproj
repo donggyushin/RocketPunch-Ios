@@ -35,6 +35,8 @@
 		70D7B881258120340022E3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70D7B880258120340022E3E3 /* GoogleService-Info.plist */; };
 		70D7B88F258120E50022E3E3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7B88E258120E50022E3E3 /* DataService.swift */; };
 		70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */; };
+		70F7475D2583CEE000A30594 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7475C2583CEE000A30594 /* ChatService.swift */; };
+		70F747602583D7A000A30594 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7475F2583D7A000A30594 /* ChatController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,8 @@
 		70D7B880258120340022E3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		70D7B88E258120E50022E3E3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProfileImageView.swift; sourceTree = "<group>"; };
+		70F7475C2583CEE000A30594 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		70F7475F2583D7A000A30594 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		B71D41CCCB37716044D3EB10 /* Pods_IosNativeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IosNativeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7689F48E04FB28F9A4388DE /* Pods-IosNativeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosNativeApp.debug.xcconfig"; path = "Target Support Files/Pods-IosNativeApp/Pods-IosNativeApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -164,6 +168,7 @@
 		702811EC2580E7560037E9BF /* Chat */ = {
 			isa = PBXGroup;
 			children = (
+				70F7475F2583D7A000A30594 /* ChatController.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -182,6 +187,7 @@
 				702811F62580ED340037E9BF /* DeviceDataService.swift */,
 				70D7B88E258120E50022E3E3 /* DataService.swift */,
 				7072D7352582594900A30009 /* UserService.swift */,
+				70F7475C2583CEE000A30594 /* ChatService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -370,6 +376,7 @@
 				702811D52580E6480037E9BF /* ViewController.swift in Sources */,
 				706FC17C2580F548000A97E5 /* UIViewControllerExtensions.swift in Sources */,
 				7072D745258259E600A30009 /* EndpointConstants.swift in Sources */,
+				70F7475D2583CEE000A30594 /* ChatService.swift in Sources */,
 				702811F72580ED340037E9BF /* DeviceDataService.swift in Sources */,
 				702811EE2580E7710037E9BF /* UsersController.swift in Sources */,
 				7072D7362582594900A30009 /* UserService.swift in Sources */,
@@ -377,6 +384,7 @@
 				702811D12580E6480037E9BF /* AppDelegate.swift in Sources */,
 				70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */,
 				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
+				70F747602583D7A000A30594 /* ChatController.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
 				706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */,
 				707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */,

@@ -11,6 +11,28 @@ import Alamofire
 class UserService {
     static let shared = UserService()
     
+    func fetchMe(token:String, completion:@escaping(Error?, String?, Bool, UserModel?) -> Void) {
+        let urlString = "\(EndpointConstants.shared.ROCKET_PUNCH_API)/user/me"
+        guard let url = URL(string: urlString) else { return }
+        AF.request(url, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: ["authorization": "Bearer \(token)"], interceptor: nil, requestModifier: nil).responseJSON { (response) in
+            switch response.result {
+            case .failure(let error):
+                return completion(error, nil, false, nil)
+            case .success(let value):
+                guard let value = value as? [String:Any] else { return }
+                guard let ok = value["ok"] as? Bool else { return }
+                if !ok {
+                    guard let message = value["message"] as? String else { return }
+                    return completion(nil, message, false, nil)
+                }else {
+                    guard let userDict = value["user"] as? [String:Any] else { return }
+                    let user = UserModel(dict: userDict)
+                    return completion(nil, nil, true, user)
+                }
+            }
+        }
+    }
+    
     func fetchUserList(completion:@escaping(Error?, String?, Bool, [UserModel]) -> Void) {
         var userList:[UserModel] = []
         let urlString = "\(EndpointConstants.shared.ROCKET_PUNCH_API)/user/list"

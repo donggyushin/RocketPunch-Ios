@@ -12,6 +12,8 @@ private let reuseIdentifier = "UserCellTypeOne"
 class UsersController: UICollectionViewController {
     
     // MARK: - Properties
+    var me:UserModel?
+    
     var userList:[UserModel] = [] {
         didSet {
             
@@ -111,6 +113,7 @@ extension UsersController {
     func configureNav() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.backButtonTitle = "이전"
         clearNavigationBackground()
     }
     
@@ -162,9 +165,37 @@ extension UsersController {
         return filteredCategory
     }
     
-    func navigateToChatController() {
-        // 로딩 띄워주기
-        self.loadingView.isHidden = false 
+    func navigateToChatController(user:UserModel) {
+        
+        guard let me = self.me else { return }
+        
+        if user.id == me.id {
+            return self.renderAlertTypeOne(title: nil, message: "본인과는 채팅할 수 없습니다", action: nil, completion: nil)
+        }
+        
+        self.loadingView.isHidden = false
+        let userIds:[String] = [me.id, user.id]
+        
+        ChatService.shared.fetchRoomId(userIds: userIds) { (error, errorString, success, roomId) in
+            self.loadingView.isHidden = true 
+            if let errorMessage = errorString {
+                return self.renderAlertTypeOne(title: nil, message: errorMessage, action: nil, completion: nil)
+            }
+            
+            if let error = error {
+                return self.renderAlertTypeOne(title: nil, message: error.localizedDescription, action: nil, completion: nil)
+            }
+            
+            if success == false {
+                return self.renderAlertTypeOne(title: nil, message: "알 수 없는 에러 발생", action: nil, completion: nil)
+            }
+            
+            guard let roomId = roomId else { return }
+            let chatController = ChatController(roomId: roomId, partnerName: user.id)
+            self.navigationController?.pushViewController(chatController, animated: true)
+            
+        }
+        
     }
 }
 
@@ -198,7 +229,7 @@ extension UsersController:UserCellTypeOneProtocol {
     func userCellTypeOne(sender: UserCellTypeOne) {
         guard let user = sender.user else { return }
         let action = UIAlertAction(title: "네", style: UIAlertAction.Style.default) { (UIAlertAction) in
-            self.navigateToChatController()
+            self.navigateToChatController(user: user)
         }
         self.renderAlertTypeTwo(title: nil, message: "\(user.id)와 채팅을 시작하시겠습니까?", action: action, completion: nil)
     }
