@@ -161,6 +161,11 @@ extension UsersController {
         })
         return filteredCategory
     }
+    
+    func navigateToChatController() {
+        // 로딩 띄워주기
+        self.loadingView.isHidden = false 
+    }
 }
 
 // MARK: Selectors
@@ -191,9 +196,11 @@ extension UsersController {
 
 extension UsersController:UserCellTypeOneProtocol {
     func userCellTypeOne(sender: UserCellTypeOne) {
-        // 해당 유저와 채팅을 시작하시겠습니까? 알러트 띄워주기
         guard let user = sender.user else { return }
-        self.renderAlertTypeTwo(title: nil, message: "\(user.id)와 채팅을 시작하시겠습니까?", action: nil, completion: nil)
+        let action = UIAlertAction(title: "네", style: UIAlertAction.Style.default) { (UIAlertAction) in
+            self.navigateToChatController()
+        }
+        self.renderAlertTypeTwo(title: nil, message: "\(user.id)와 채팅을 시작하시겠습니까?", action: action, completion: nil)
     }
 }
 
