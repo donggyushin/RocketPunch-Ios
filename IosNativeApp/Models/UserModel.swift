@@ -12,8 +12,8 @@ struct UserModel {
     var profile:String
     
     init(dict:[String:Any]) {
-        let id = dict["id"] as? String ?? ""
-        let profile = dict["profile"] as? String ?? ""
+        let id = dict["userId"] as? String ?? ""
+        let profile = dict["profileImage"] as? String ?? ""
         self.id = id
         self.profile = profile
     }

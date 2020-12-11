@@ -14,9 +14,25 @@ class UsersController: UICollectionViewController {
     // MARK: - Properties
     var userList:[UserModel] = [] {
         didSet {
+            
+            self.filteredUserList = userList
+        }
+    }
+    
+    var filteredUserList:[UserModel] = [] {
+        didSet {
             self.collectionView.reloadData()
         }
     }
+    
+    let searchController = UISearchController(searchResultsController: nil)
+    
+    private lazy var titleLabel:UILabel = {
+        let label = UILabel()
+        label.text = "유저"
+        label.font = UIFont.systemFont(ofSize: 20)
+        return label
+    }()
     
     private lazy var logoutButton:UIButton = {
         let bt = UIButton(type: UIButton.ButtonType.system)
@@ -46,11 +62,13 @@ class UsersController: UICollectionViewController {
 
         // Register cell classes
         self.collectionView!.register(UserCellTypeOne.self, forCellWithReuseIdentifier: reuseIdentifier)
+        collectionView.alwaysBounceVertical = true
 
         // Do any additional setup after loading the view.
         configureUI()
         configureNav()
         fetchUserList()
+        configureSearchController()
     }
 
     
@@ -59,20 +77,21 @@ class UsersController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return self.userList.count
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 1
+        return self.filteredUserList.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! UserCellTypeOne
-    
+        cell.user = self.filteredUserList[indexPath.row]
         // Configure the cell
         cell.delegate = self
+        
     
         return cell
     }
@@ -91,7 +110,22 @@ extension UsersController {
     
     func configureNav() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: logoutButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
         clearNavigationBackground()
+    }
+    
+    func configureSearchController() {
+        
+        searchController.searchResultsUpdater = self
+        
+        searchController.obscuresBackgroundDuringPresentation = false
+        
+        searchController.searchBar.placeholder = "유저를 검색하세요!"
+        
+        searchController.searchBar.setValue("취소", forKey: "cancelButtonText")
+        
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 }
 
@@ -118,6 +152,17 @@ extension UsersController {
     }
 }
 
+// MARK: Helpers
+extension UsersController {
+    func filterContentForSearchText(searchText:String, category:[UserModel]) -> [UserModel] {
+        var filteredCategory:[UserModel] = []
+        filteredCategory = category.filter({ (user) -> Bool in
+            return user.id.lowercased().contains(searchText.lowercased())
+        })
+        return filteredCategory
+    }
+}
+
 // MARK: Selectors
 extension UsersController {
     @objc func logoutButtonTapped(sender:UIButton) {
@@ -129,7 +174,7 @@ extension UsersController {
 // MARK: - CollectionViewFlowLayout Delegates
 extension UsersController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 150)
+        return CGSize(width: self.view.frame.width, height: 90)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -146,6 +191,19 @@ extension UsersController {
 
 extension UsersController:UserCellTypeOneProtocol {
     func userCellTypeOne(sender: UserCellTypeOne) {
-        print("user cell tapped")
+        // 해당 유저와 채팅을 시작하시겠습니까? 알러트 띄워주기
+        guard let user = sender.user else { return }
+        self.renderAlertTypeTwo(title: nil, message: "\(user.id)와 채팅을 시작하시겠습니까?", action: nil, completion: nil)
     }
+}
+
+
+extension UsersController: UISearchResultsUpdating {
+  func updateSearchResults(for searchController: UISearchController) {
+    guard let text = searchController.searchBar.text else { return }
+    if text.isEmpty {
+        return self.filteredUserList = self.userList
+    }
+    return self.filteredUserList = filterContentForSearchText(searchText: text, category: self.userList)
+  }
 }

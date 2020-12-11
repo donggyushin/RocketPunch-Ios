@@ -29,6 +29,7 @@
 		7072D74925825B0B00A30009 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74825825B0B00A30009 /* UserModel.swift */; };
 		7072D74D25825E0500A30009 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74C25825E0500A30009 /* LoadingView.swift */; };
 		7072D75025825F9600A30009 /* UIViewExtenstions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7072D74F25825F9600A30009 /* UIViewExtenstions.swift */; };
+		707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707687D72583992700C7E519 /* UserProfileImageView.swift */; };
 		707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707D260825827C2D00B784C9 /* UserCellTypeOne.swift */; };
 		707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DD43725812A37002CDBC8 /* ImagePicker.swift */; };
 		70D7B881258120340022E3E3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 70D7B880258120340022E3E3 /* GoogleService-Info.plist */; };
@@ -61,6 +62,7 @@
 		7072D74825825B0B00A30009 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		7072D74C25825E0500A30009 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		7072D74F25825F9600A30009 /* UIViewExtenstions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtenstions.swift; sourceTree = "<group>"; };
+		707687D72583992700C7E519 /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
 		707D260825827C2D00B784C9 /* UserCellTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellTypeOne.swift; sourceTree = "<group>"; };
 		707DD43725812A37002CDBC8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		70D7B880258120340022E3E3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				707D260825827C2D00B784C9 /* UserCellTypeOne.swift */,
+				707687D72583992700C7E519 /* UserProfileImageView.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -376,6 +379,7 @@
 				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
 				706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */,
+				707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */,
 				7072D75025825F9600A30009 /* UIViewExtenstions.swift in Sources */,
 				7072D74D25825E0500A30009 /* LoadingView.swift in Sources */,
 				702811E72580E73E0037E9BF /* RootController.swift in Sources */,

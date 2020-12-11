@@ -9,10 +9,30 @@ import UIKit
 
 extension UIViewController {
     
-    func renderAlertTypeOne(title:String?, message:String, action:((UIAlertAction) -> Void)?, completion:(() -> Void)?) {
+    func renderAlertTypeTwo(title:String?, message:String, action:UIAlertAction?, completion:(() -> Void)?) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        if action != nil {
+            alert.addAction(action!)
+        }else {
+            alert.addAction(UIAlertAction(title: "네", style: UIAlertAction.Style.default, handler: nil))
+        }
+        
+        alert.addAction(UIAlertAction(title: "아니오", style: UIAlertAction.Style.cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: completion)
+        
+    }
+    
+    func renderAlertTypeOne(title:String?, message:String, action:UIAlertAction?, completion:(() -> Void)?) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
         
-        alert.addAction(UIAlertAction(title: "네", style: UIAlertAction.Style.default, handler: action))
+        if action != nil {
+            alert.addAction(action!)
+        }else {
+            alert.addAction(UIAlertAction(title: "네", style: UIAlertAction.Style.default, handler: nil))
+        }
+        
+        
         self.present(alert, animated: true, completion: completion)
     }
     

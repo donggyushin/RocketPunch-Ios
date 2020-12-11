@@ -28,8 +28,12 @@ class UserService {
                 }
                 
                 guard let userListDict = value["users"] as? [[String:Any]] else { return }
+                
                 for item in userListDict {
+                    
                     let user = UserModel(dict: item)
+                    
+                    
                     userList.append(user)
                 }
                 return completion(nil, nil, true, userList)
