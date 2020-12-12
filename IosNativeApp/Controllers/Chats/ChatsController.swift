@@ -10,6 +10,26 @@ import UIKit
 private let reuseIdentifier = "Cell"
 
 class ChatsController: UICollectionViewController {
+    
+    // MARK: Properties
+    var chatRooms:[ChatRoomModel] = [] {
+        didSet {
+            print("chat rooms 받음: \(chatRooms)")
+        }
+    }
+    
+    private lazy var titleLabel:UILabel = {
+        let label = UILabel()
+        label.text = "채팅"
+        label.font = UIFont.boldSystemFont(ofSize: 20)
+        return label
+    }()
+    
+    private lazy var chatsSocket:ChatsSocketIOService = {
+        let sc = ChatsSocketIOService()
+        sc.delegate = self 
+        return sc
+    }()
 
     // MARK: - Lifecycles
     
@@ -29,9 +49,11 @@ class ChatsController: UICollectionViewController {
         self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         configureUI()
-
+        configureNav()
+        connectSocket()
         
     }
+    
 
 
     // MARK: UICollectionViewDataSource
@@ -66,5 +88,40 @@ class ChatsController: UICollectionViewController {
 extension ChatsController {
     func configureUI() {
         collectionView.backgroundColor = .systemBackground
+    }
+    
+    func configureNav() {
+        clearNavigationBackground()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+    }
+}
+
+
+// MARK: Socket
+extension ChatsController {
+    func connectSocket() {
+        self.chatsSocket.establishConnection()
+    }
+    
+    func disconnectSocket() {
+        self.chatsSocket.closeConnection()
+    }
+}
+
+
+extension ChatsController:ChatsSocketIOServiceProtocol {
+    func chatRooms(chatRooms: [ChatRoomModel]) {
+        self.chatRooms = chatRooms
+    }
+    
+    func errorMessage(message: String) {
+        self.renderAlertTypeOne(title: nil, message: message, action: nil, completion: nil)
+    }
+    
+    func connected() {
+        print("connected with socket")
+        guard let userId = RootConstants.shared.rootController.user?.id else { return }
+        
+        self.chatsSocket.joinRoomList(userId: userId)
     }
 }

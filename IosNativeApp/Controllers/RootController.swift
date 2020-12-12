@@ -10,11 +10,7 @@ import UIKit
 class RootController: UITabBarController {
     
     // MARK: Properties
-    var user:UserModel? {
-        didSet {
-            RootConstants.shared.usersController?.me  = user
-        }
-    }
+    var user:UserModel? 
     
     
     // MARK: - Lifecycles
@@ -56,6 +52,7 @@ extension RootController {
 extension RootController {
     func fetchMe(token:String) {
         
+        
         UserService.shared.fetchMe(token: token) { (error, errorMessage, success, user) in
             if let errorMessage = errorMessage {
                 return self.renderAlertTypeOne(title: nil, message: errorMessage, action: nil, completion: nil)
@@ -70,6 +67,7 @@ extension RootController {
             }
             
             guard let user = user else { return }
+            
             self.user = user
         }
     }
@@ -78,6 +76,7 @@ extension RootController {
 // MARK: Helpers
 extension RootController {
     func appInit() {
+        
         
         let token = DeviceDataService.shared.gettingDeviceData(key: AuthConstants.AUTH_TOKEN)
         
@@ -88,7 +87,7 @@ extension RootController {
         }else {
             
             loginUser(token: token!)
-            fetchMe(token:token!)
+            
         }
     }
     
@@ -105,6 +104,7 @@ extension RootController {
     
     func loginUser(token:String) {
         DeviceDataService.shared.settingDeviceData(key: AuthConstants.AUTH_TOKEN, value: token)
+        fetchMe(token:token)
         configureControllers()
     }
     

@@ -19,6 +19,13 @@
 		702811F22580E8580037E9BF /* ChatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702811F12580E8580037E9BF /* ChatsController.swift */; };
 		702811F72580ED340037E9BF /* DeviceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702811F62580ED340037E9BF /* DeviceDataService.swift */; };
 		702811FB2580EDE10037E9BF /* AuthConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702811FA2580EDE10037E9BF /* AuthConstants.swift */; };
+		7050A2602584DAD700E1473C /* ChatControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A25F2584DAD700E1473C /* ChatControllerV2.swift */; };
+		7050A2632584E09600E1473C /* MyMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A2622584E09600E1473C /* MyMessageCell.swift */; };
+		7050A2662584E6E400E1473C /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A2652584E6E400E1473C /* StringExtension.swift */; };
+		7050A26925851C7A00E1473C /* CursorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A26825851C7A00E1473C /* CursorModel.swift */; };
+		7050A26D25851F6F00E1473C /* OtherMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A26C25851F6F00E1473C /* OtherMessageCell.swift */; };
+		7050A2702585491E00E1473C /* ChatsSocketIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A26F2585491E00E1473C /* ChatsSocketIOService.swift */; };
+		7050A273258553E800E1473C /* ChatRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7050A272258553E800E1473C /* ChatRoomModel.swift */; };
 		706FC1732580EFFD000A97E5 /* SignInController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706FC1722580EFFC000A97E5 /* SignInController.swift */; };
 		706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706FC1762580F1B6000A97E5 /* TextInputTypeOne.swift */; };
 		706FC17C2580F548000A97E5 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706FC17B2580F548000A97E5 /* UIViewControllerExtensions.swift */; };
@@ -39,7 +46,6 @@
 		70D7B88F258120E50022E3E3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7B88E258120E50022E3E3 /* DataService.swift */; };
 		70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */; };
 		70F7475D2583CEE000A30594 /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7475C2583CEE000A30594 /* ChatService.swift */; };
-		70F747602583D7A000A30594 /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70F7475F2583D7A000A30594 /* ChatController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +63,13 @@
 		702811F12580E8580037E9BF /* ChatsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsController.swift; sourceTree = "<group>"; };
 		702811F62580ED340037E9BF /* DeviceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDataService.swift; sourceTree = "<group>"; };
 		702811FA2580EDE10037E9BF /* AuthConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthConstants.swift; sourceTree = "<group>"; };
+		7050A25F2584DAD700E1473C /* ChatControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatControllerV2.swift; sourceTree = "<group>"; };
+		7050A2622584E09600E1473C /* MyMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageCell.swift; sourceTree = "<group>"; };
+		7050A2652584E6E400E1473C /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		7050A26825851C7A00E1473C /* CursorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorModel.swift; sourceTree = "<group>"; };
+		7050A26C25851F6F00E1473C /* OtherMessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherMessageCell.swift; sourceTree = "<group>"; };
+		7050A26F2585491E00E1473C /* ChatsSocketIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatsSocketIOService.swift; sourceTree = "<group>"; };
+		7050A272258553E800E1473C /* ChatRoomModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomModel.swift; sourceTree = "<group>"; };
 		706FC1722580EFFC000A97E5 /* SignInController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInController.swift; sourceTree = "<group>"; };
 		706FC1762580F1B6000A97E5 /* TextInputTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputTypeOne.swift; sourceTree = "<group>"; };
 		706FC17B2580F548000A97E5 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
@@ -77,7 +90,6 @@
 		70D7B88E258120E50022E3E3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProfileImageView.swift; sourceTree = "<group>"; };
 		70F7475C2583CEE000A30594 /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
-		70F7475F2583D7A000A30594 /* ChatController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		B71D41CCCB37716044D3EB10 /* Pods_IosNativeApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IosNativeApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7689F48E04FB28F9A4388DE /* Pods-IosNativeApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IosNativeApp.debug.xcconfig"; path = "Target Support Files/Pods-IosNativeApp/Pods-IosNativeApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,7 +186,7 @@
 		702811EC2580E7560037E9BF /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				70F7475F2583D7A000A30594 /* ChatController.swift */,
+				7050A25F2584DAD700E1473C /* ChatControllerV2.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -195,6 +207,7 @@
 				7072D7352582594900A30009 /* UserService.swift */,
 				70F7475C2583CEE000A30594 /* ChatService.swift */,
 				70C807472584838B00DA991B /* ChatSocketIOService.swift */,
+				7050A26F2585491E00E1473C /* ChatsSocketIOService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -235,6 +248,7 @@
 			children = (
 				706FC17B2580F548000A97E5 /* UIViewControllerExtensions.swift */,
 				7072D74F25825F9600A30009 /* UIViewExtenstions.swift */,
+				7050A2652584E6E400E1473C /* StringExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -244,6 +258,8 @@
 			children = (
 				7072D74825825B0B00A30009 /* UserModel.swift */,
 				70C8074A2584B79D00DA991B /* MessageModel.swift */,
+				7050A26825851C7A00E1473C /* CursorModel.swift */,
+				7050A272258553E800E1473C /* ChatRoomModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -261,6 +277,8 @@
 			isa = PBXGroup;
 			children = (
 				70C8074E2584BDC100DA991B /* ChatTextInput.swift */,
+				7050A2622584E09600E1473C /* MyMessageCell.swift */,
+				7050A26C25851F6F00E1473C /* OtherMessageCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -389,29 +407,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				706FC18225810A23000A97E5 /* RootConstants.swift in Sources */,
+				7050A2662584E6E400E1473C /* StringExtension.swift in Sources */,
 				70D7B88F258120E50022E3E3 /* DataService.swift in Sources */,
 				702811D52580E6480037E9BF /* ViewController.swift in Sources */,
+				7050A2632584E09600E1473C /* MyMessageCell.swift in Sources */,
 				706FC17C2580F548000A97E5 /* UIViewControllerExtensions.swift in Sources */,
 				7072D745258259E600A30009 /* EndpointConstants.swift in Sources */,
 				70F7475D2583CEE000A30594 /* ChatService.swift in Sources */,
 				702811F72580ED340037E9BF /* DeviceDataService.swift in Sources */,
 				702811EE2580E7710037E9BF /* UsersController.swift in Sources */,
+				7050A273258553E800E1473C /* ChatRoomModel.swift in Sources */,
 				70C807482584838B00DA991B /* ChatSocketIOService.swift in Sources */,
 				7072D7362582594900A30009 /* UserService.swift in Sources */,
 				706FC1732580EFFD000A97E5 /* SignInController.swift in Sources */,
 				702811D12580E6480037E9BF /* AppDelegate.swift in Sources */,
 				70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */,
 				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
-				70F747602583D7A000A30594 /* ChatController.swift in Sources */,
+				7050A2602584DAD700E1473C /* ChatControllerV2.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
 				70C8074B2584B79D00DA991B /* MessageModel.swift in Sources */,
 				706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */,
+				7050A2702585491E00E1473C /* ChatsSocketIOService.swift in Sources */,
 				707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */,
 				7072D75025825F9600A30009 /* UIViewExtenstions.swift in Sources */,
 				7072D74D25825E0500A30009 /* LoadingView.swift in Sources */,
 				702811E72580E73E0037E9BF /* RootController.swift in Sources */,
+				7050A26D25851F6F00E1473C /* OtherMessageCell.swift in Sources */,
 				702811F22580E8580037E9BF /* ChatsController.swift in Sources */,
 				70C8074F2584BDC100DA991B /* ChatTextInput.swift in Sources */,
+				7050A26925851C7A00E1473C /* CursorModel.swift in Sources */,
 				7072D74925825B0B00A30009 /* UserModel.swift in Sources */,
 				707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */,
 				702811FB2580EDE10037E9BF /* AuthConstants.swift in Sources */,

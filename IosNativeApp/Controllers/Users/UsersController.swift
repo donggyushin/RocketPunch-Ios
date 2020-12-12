@@ -12,7 +12,7 @@ private let reuseIdentifier = "UserCellTypeOne"
 class UsersController: UICollectionViewController {
     
     // MARK: - Properties
-    var me:UserModel?
+    
     
     var userList:[UserModel] = [] {
         didSet {
@@ -32,7 +32,7 @@ class UsersController: UICollectionViewController {
     private lazy var titleLabel:UILabel = {
         let label = UILabel()
         label.text = "유저"
-        label.font = UIFont.systemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         return label
     }()
     
@@ -167,7 +167,7 @@ extension UsersController {
     
     func navigateToChatController(user:UserModel) {
         
-        guard let me = self.me else { return }
+        guard let me = RootConstants.shared.rootController.user else { return }
         
         if user.id == me.id {
             return self.renderAlertTypeOne(title: nil, message: "본인과는 채팅할 수 없습니다", action: nil, completion: nil)
@@ -191,7 +191,8 @@ extension UsersController {
             }
             
             guard let roomId = roomId else { return }
-            let chatController = ChatController(roomId: roomId, partnerName: user.id)
+//            let chatController = ChatController(roomId: roomId, partnerName: user.id)
+            let chatController = ChatControllerV2(roomId: roomId, partnerName: user.id)
             self.navigationController?.pushViewController(chatController, animated: true)
             
         }
@@ -210,11 +211,11 @@ extension UsersController {
 // MARK: - CollectionViewFlowLayout Delegates
 extension UsersController:UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.width, height: 90)
+        return CGSize(width: self.view.frame.width, height: 60)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 1
+        return 4
     }
 }
 
@@ -227,7 +228,9 @@ extension UsersController {
 
 extension UsersController:UserCellTypeOneProtocol {
     func userCellTypeOne(sender: UserCellTypeOne) {
+        
         guard let user = sender.user else { return }
+        
         let action = UIAlertAction(title: "네", style: UIAlertAction.Style.default) { (UIAlertAction) in
             self.navigateToChatController(user: user)
         }

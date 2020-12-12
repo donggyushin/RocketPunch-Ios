@@ -49,9 +49,12 @@ extension UIViewController {
         view.addGestureRecognizer(tap)
     }
     
+    
+    
     func moveViewWhenKeyboardAppeared() {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
     }
     
     
@@ -71,6 +74,8 @@ extension UIViewController {
     @objc func keyboardWillHide(notification: NSNotification) {
       self.view.frame.origin.y = 0
     }
+    
+    
 }
 
 
