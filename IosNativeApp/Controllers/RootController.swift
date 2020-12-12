@@ -55,7 +55,7 @@ extension RootController {
 // MARK: APIs
 extension RootController {
     func fetchMe(token:String) {
-        print("fetchMe")
+        
         UserService.shared.fetchMe(token: token) { (error, errorMessage, success, user) in
             if let errorMessage = errorMessage {
                 return self.renderAlertTypeOne(title: nil, message: errorMessage, action: nil, completion: nil)

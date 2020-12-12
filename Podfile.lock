@@ -23,6 +23,7 @@ PODS:
     - PromisesObjC (~> 1.2)
   - GoogleUtilities/Logger (6.7.2):
     - GoogleUtilities/Environment
+  - GrowingTextView (0.7.2)
   - GTMSessionFetcher/Core (1.4.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
@@ -33,11 +34,16 @@ PODS:
   - SDWebImage (5.9.0):
     - SDWebImage/Core (= 5.9.0)
   - SDWebImage/Core (5.9.0)
+  - Socket.IO-Client-Swift (15.2.0):
+    - Starscream (~> 3.1)
+  - Starscream (3.1.1)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Firebase/Storage
+  - GrowingTextView (= 0.7.2)
   - SDWebImage (~> 5.0)
+  - Socket.IO-Client-Swift (~> 15.2.0)
 
 SPEC REPOS:
   trunk:
@@ -48,10 +54,13 @@ SPEC REPOS:
     - FirebaseStorage
     - GoogleDataTransport
     - GoogleUtilities
+    - GrowingTextView
     - GTMSessionFetcher
     - nanopb
     - PromisesObjC
     - SDWebImage
+    - Socket.IO-Client-Swift
+    - Starscream
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
@@ -61,11 +70,14 @@ SPEC CHECKSUMS:
   FirebaseStorage: 33b92875a9b556824886cc7a65120c7d2cb3a8d8
   GoogleDataTransport: e85fb700c9b027079ce182c3d08e12e0f9618bb4
   GoogleUtilities: 7f2f5a07f888cdb145101d6042bc4422f57e70b3
+  GrowingTextView: 876bf42005b5e4a4fd740597db12caaf41f0fe6c
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
+  Socket.IO-Client-Swift: 1e3e3a1f09f3312a167f0d781eb2f383d477357c
+  Starscream: 4bb2f9942274833f7b4d296a55504dcfc7edb7b0
 
-PODFILE CHECKSUM: 2a58bb47dd72de7c7706407dc4ece11fe203eb78
+PODFILE CHECKSUM: 62fad678a590f8e72f08d0cc08cc98ce07f16dd0
 
 COCOAPODS: 1.9.3

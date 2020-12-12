@@ -9,4 +9,6 @@ target 'IosNativeApp' do
   pod 'Firebase/Storage'
   pod 'Alamofire', '~> 5.2'
   pod 'SDWebImage', '~> 5.0'
+  pod 'Socket.IO-Client-Swift', '~> 15.2.0'
+  pod 'GrowingTextView', '0.7.2'
 end
