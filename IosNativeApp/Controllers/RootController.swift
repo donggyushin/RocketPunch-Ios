@@ -104,8 +104,8 @@ extension RootController {
     
     func loginUser(token:String) {
         DeviceDataService.shared.settingDeviceData(key: AuthConstants.AUTH_TOKEN, value: token)
-        fetchMe(token:token)
         configureControllers()
+        fetchMe(token:token)
     }
     
     func logoutUser() {

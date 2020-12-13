@@ -17,7 +17,7 @@ struct MessageModel {
     init(dict:[String:Any]) {
         let messageId = dict["messageId"] as? Float ?? 0
         let userDict = dict["user"] as? [String:Any] ?? ["key":"value"]
-//        let createdAtString = dict["createdAt"] as? String ?? ""
+        let createdAtString = dict["createdAt"] as? String ?? ""
         let text = dict["text"] as? String ?? ""
         
         let user = UserModel(dict: userDict)
@@ -25,7 +25,8 @@ struct MessageModel {
         self.user = user
         self.text = text 
         
-        self.createdAt = Date()
+        let createdAt = DateUtil.shared.convertJsonDateToSwiftDate(jsonDate: createdAtString)
+        self.createdAt = createdAt
         
     }
 }

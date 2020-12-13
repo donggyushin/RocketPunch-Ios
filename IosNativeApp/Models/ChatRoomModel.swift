@@ -20,6 +20,10 @@ struct ChatRoomModel {
         let messagesDict = dict["messages"] as! [[String:Any]]
         let cursorsDict = dict["cursors"] as! [[String:Any]]
         let id = dict["_id"] as? String ?? ""
+        let jsonDate = dict["updatedAt"] as? String ?? ""
+        
+        let updatedAt = DateUtil.shared.convertJsonDateToSwiftDate(jsonDate: jsonDate)
+        self.updatedAt = updatedAt
         
         self.id = id 
         
@@ -47,7 +51,6 @@ struct ChatRoomModel {
         
         self.cursors = cursors
         
-        self.updatedAt = Date()
         
     }
 }

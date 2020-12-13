@@ -7,14 +7,14 @@
 
 import UIKit
 
-private let reuseIdentifier = "Cell"
+private let reuseIdentifier = "chatRoomCell"
 
 class ChatsController: UICollectionViewController {
     
     // MARK: Properties
     var chatRooms:[ChatRoomModel] = [] {
         didSet {
-            print("chat rooms 받음: \(chatRooms)")
+            self.collectionView.reloadData()
         }
     }
     
@@ -46,12 +46,12 @@ class ChatsController: UICollectionViewController {
 
 
         // Register cell classes
-        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        self.collectionView!.register(ChatRoomCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
         configureUI()
         configureNav()
         connectSocket()
-        
+        configureCollectionview()
     }
     
 
@@ -60,20 +60,21 @@ class ChatsController: UICollectionViewController {
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of items
-        return 0
+        return self.chatRooms.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! ChatRoomCell
     
         // Configure the cell
-    
+        cell.chatRoom = self.chatRooms[indexPath.row]
+        cell.delegate = self
         return cell
     }
 
@@ -93,6 +94,11 @@ extension ChatsController {
     func configureNav() {
         clearNavigationBackground()
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: titleLabel)
+        navigationItem.backButtonTitle = "채팅"
+    }
+    
+    func configureCollectionview() {
+        collectionView.alwaysBounceVertical = true
     }
 }
 
@@ -119,9 +125,29 @@ extension ChatsController:ChatsSocketIOServiceProtocol {
     }
     
     func connected() {
-        print("connected with socket")
         guard let userId = RootConstants.shared.rootController.user?.id else { return }
         
         self.chatsSocket.joinRoomList(userId: userId)
+    }
+}
+
+
+extension ChatsController:UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.view.frame.width, height: 110)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 1
+    }
+}
+
+
+extension ChatsController:ChatRoomCellProtocol {
+    func chatRoomCell(sender: ChatRoomCell) {
+        guard let roomId = sender.chatRoom?.id else { return }
+        guard let partner = sender.partner else { return }
+        let chatController = ChatControllerV2(roomId: roomId, partnerName: partner.id)
+        navigationController?.pushViewController(chatController, animated: true)
     }
 }

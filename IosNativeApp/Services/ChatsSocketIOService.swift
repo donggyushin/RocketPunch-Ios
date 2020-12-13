@@ -35,6 +35,8 @@ class ChatsSocketIOService:NSObject {
         }
         
         socket.on("room_list") { (dataArray, _) in
+            print("room_list on!!!!!")
+            
             guard let data = dataArray[0] as? [String:Any] else { return }
             guard let ok = data["ok"] as? Bool else { return }
             if !ok {
@@ -47,6 +49,7 @@ class ChatsSocketIOService:NSObject {
                     let chatRoom = ChatRoomModel(dict: chatDict)
                     chatRooms.append(chatRoom)
                 }
+                print(chatRooms[0])
                 self.delegate?.chatRooms(chatRooms: chatRooms)
             }
         }

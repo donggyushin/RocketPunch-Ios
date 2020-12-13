@@ -104,6 +104,9 @@ class ChatTextInput: UIView, UITextViewDelegate {
     
     @objc func sendButtonTapped(){
         guard let text = self.messageInputTextView.text else { return }
+        if text.isEmpty {
+            return 
+        }
         self.messageInputTextView.text = ""
         self.delegate?.sendButtonTapped(text: text)
     }

@@ -39,6 +39,10 @@
 		707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707687D72583992700C7E519 /* UserProfileImageView.swift */; };
 		707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707D260825827C2D00B784C9 /* UserCellTypeOne.swift */; };
 		707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DD43725812A37002CDBC8 /* ImagePicker.swift */; };
+		70807E142585DA66004DFA4E /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E132585DA66004DFA4E /* ChatRoomCell.swift */; };
+		70807E172585E3A1004DFA4E /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E162585E3A1004DFA4E /* DateUtil.swift */; };
+		70807E1A2585EAA2004DFA4E /* DateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E192585EAA2004DFA4E /* DateLabel.swift */; };
+		70807E25258607B8004DFA4E /* DateLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E24258607B8004DFA4E /* DateLineView.swift */; };
 		70C807482584838B00DA991B /* ChatSocketIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C807472584838B00DA991B /* ChatSocketIOService.swift */; };
 		70C8074B2584B79D00DA991B /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8074A2584B79D00DA991B /* MessageModel.swift */; };
 		70C8074F2584BDC100DA991B /* ChatTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8074E2584BDC100DA991B /* ChatTextInput.swift */; };
@@ -83,6 +87,10 @@
 		707687D72583992700C7E519 /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
 		707D260825827C2D00B784C9 /* UserCellTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellTypeOne.swift; sourceTree = "<group>"; };
 		707DD43725812A37002CDBC8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		70807E132585DA66004DFA4E /* ChatRoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
+		70807E162585E3A1004DFA4E /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
+		70807E192585EAA2004DFA4E /* DateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabel.swift; sourceTree = "<group>"; };
+		70807E24258607B8004DFA4E /* DateLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLineView.swift; sourceTree = "<group>"; };
 		70C807472584838B00DA991B /* ChatSocketIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketIOService.swift; sourceTree = "<group>"; };
 		70C8074A2584B79D00DA991B /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		70C8074E2584BDC100DA991B /* ChatTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextInput.swift; sourceTree = "<group>"; };
@@ -195,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				707DD43725812A37002CDBC8 /* ImagePicker.swift */,
+				70807E162585E3A1004DFA4E /* DateUtil.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -234,11 +243,13 @@
 		706FC1752580F165000A97E5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				70807E122585DA53004DFA4E /* Chats */,
 				70C8074D2584BDAC00DA991B /* Chat */,
 				707D260725827C1800B784C9 /* Users */,
 				706FC1762580F1B6000A97E5 /* TextInputTypeOne.swift */,
 				70D7B891258122E10022E3E3 /* UploadProfileImageView.swift */,
 				7072D74C25825E0500A30009 /* LoadingView.swift */,
+				70807E192585EAA2004DFA4E /* DateLabel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -273,12 +284,21 @@
 			path = Users;
 			sourceTree = "<group>";
 		};
+		70807E122585DA53004DFA4E /* Chats */ = {
+			isa = PBXGroup;
+			children = (
+				70807E132585DA66004DFA4E /* ChatRoomCell.swift */,
+			);
+			path = Chats;
+			sourceTree = "<group>";
+		};
 		70C8074D2584BDAC00DA991B /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				70C8074E2584BDC100DA991B /* ChatTextInput.swift */,
 				7050A2622584E09600E1473C /* MyMessageCell.swift */,
 				7050A26C25851F6F00E1473C /* OtherMessageCell.swift */,
+				70807E24258607B8004DFA4E /* DateLineView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -410,6 +430,7 @@
 				7050A2662584E6E400E1473C /* StringExtension.swift in Sources */,
 				70D7B88F258120E50022E3E3 /* DataService.swift in Sources */,
 				702811D52580E6480037E9BF /* ViewController.swift in Sources */,
+				70807E1A2585EAA2004DFA4E /* DateLabel.swift in Sources */,
 				7050A2632584E09600E1473C /* MyMessageCell.swift in Sources */,
 				706FC17C2580F548000A97E5 /* UIViewControllerExtensions.swift in Sources */,
 				7072D745258259E600A30009 /* EndpointConstants.swift in Sources */,
@@ -417,11 +438,13 @@
 				702811F72580ED340037E9BF /* DeviceDataService.swift in Sources */,
 				702811EE2580E7710037E9BF /* UsersController.swift in Sources */,
 				7050A273258553E800E1473C /* ChatRoomModel.swift in Sources */,
+				70807E142585DA66004DFA4E /* ChatRoomCell.swift in Sources */,
 				70C807482584838B00DA991B /* ChatSocketIOService.swift in Sources */,
 				7072D7362582594900A30009 /* UserService.swift in Sources */,
 				706FC1732580EFFD000A97E5 /* SignInController.swift in Sources */,
 				702811D12580E6480037E9BF /* AppDelegate.swift in Sources */,
 				70D7B892258122E10022E3E3 /* UploadProfileImageView.swift in Sources */,
+				70807E25258607B8004DFA4E /* DateLineView.swift in Sources */,
 				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
 				7050A2602584DAD700E1473C /* ChatControllerV2.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
@@ -438,6 +461,7 @@
 				7050A26925851C7A00E1473C /* CursorModel.swift in Sources */,
 				7072D74925825B0B00A30009 /* UserModel.swift in Sources */,
 				707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */,
+				70807E172585E3A1004DFA4E /* DateUtil.swift in Sources */,
 				702811FB2580EDE10037E9BF /* AuthConstants.swift in Sources */,
 				706FC17F2581061F000A97E5 /* SignUpController.swift in Sources */,
 			);

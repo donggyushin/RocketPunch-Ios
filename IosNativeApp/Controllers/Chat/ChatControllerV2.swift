@@ -117,6 +117,7 @@ class ChatControllerV2: UIViewController  {
     func configureCollectionView() {
         collectionView.register(MyMessageCell.self, forCellWithReuseIdentifier: myMessageIdentifier)
         collectionView.register(OtherMessageCell.self, forCellWithReuseIdentifier: otherMessageIdentifier)
+        
         self.collectionView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
     }
     
@@ -140,28 +141,126 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        
+        // 다른 사람이 보낸 메시지 일때
         if self.messages[indexPath.row].user.id != RootConstants.shared.rootController.user?.id {
+            
+            
+            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: otherMessageIdentifier, for: indexPath) as! OtherMessageCell
+            cell.dateLine.isHidden = true
+            cell.timeLabel.isHidden = false 
+            // 첫 메시지 이면 날짜 구분선이 붙은 메시지 셀을 반환해준다.
+            if indexPath.row == 0 {
+                cell.dateLine.isHidden = false
+            }else {
+                // 첫번째 메시지가 아닌데, 이전과 날짜가 서로 다를 경우에는 날짜구분선 렌더링
+                let currentMessage = self.messages[indexPath.row]
+                let prevMessage = self.messages[indexPath.row - 1]
+                
+                if !DateUtil.shared.compareTwoDate(date1: currentMessage.createdAt, date2: prevMessage.createdAt) {
+                    cell.dateLine.isHidden = false
+                }
+                
+            }
+            
+            
+            
+            
+            
+            
+            
             let message = self.messages[indexPath.row]
             cell.message = message
-            
+            cell.profileImageView.isHidden = false
+            cell.timeLabel.isHidden = false
             
             if self.messages.count - 1 != indexPath.row {
-                // 이 cell 이 마지막 셀이 아닐때에, 이 셀의 다음 셀이 동일한 유저의 셀이라면,
-                // 프로필 이미지를 숨겨주자
+                
                 let nextMessage = self.messages[indexPath.row + 1]
                 if nextMessage.user.id == message.user.id {
+                    // 이 cell 이 마지막 셀이 아닐때에, 이 셀의 다음 셀이 동일한 유저의 셀이라면,
+                    // 프로필 이미지를 숨겨주자
                     cell.profileImageView.isHidden = true
+                    
+                    // 다음셀과 시간이 같다면 타임라벨을 숨겨주자
+                    let currentMessageTimeString = DateUtil.shared.naturalTimeString(date: message.createdAt)
+                    let nextMessageTimeString = DateUtil.shared.naturalTimeString(date: nextMessage.createdAt)
+                    if currentMessageTimeString == nextMessageTimeString {
+                        cell.timeLabel.isHidden = true
+                    }else {
+                        cell.timeLabel.isHidden = false
+                    }
                 }else {
-                    cell.profileImageView.isHidden = false 
+                    cell.profileImageView.isHidden = false
+                    cell.timeLabel.isHidden = false
                 }
+                
+                
+                
+                return cell
+                
+                
             }
+            // 만약 마지막 메시지이다
+            
+            // 사진이랑 시간 둘다 렌더링
+            cell.profileImageView.isHidden = false
+            cell.timeLabel.isHidden = false
             
             return cell
         }
         
+        // 내가 보낸 메시지일때
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: myMessageIdentifier, for: indexPath) as! MyMessageCell
         cell.message = self.messages[indexPath.row]
+        cell.timeLabel.isHidden = false
+        cell.dateLine.isHidden = true
+        
+        // 만약에 첫번째 메시지라면 dateLine을 렌더링,
+        if indexPath.row == 0 {
+            cell.dateLine.isHidden = false 
+        }else {
+            // 첫번째 메시지가 아닌데, 이전 메시지랑 날짜가 다를경우 dateLine을 렌더링
+            let curremtMessage = self.messages[indexPath.row]
+            let prevMessage = self.messages[indexPath.row - 1]
+            
+            if !DateUtil.shared.compareTwoDate(date1: curremtMessage.createdAt, date2: prevMessage.createdAt) {
+                cell.dateLine.isHidden = false
+            }
+            
+        }
+        
+        
+        
+        
+        // 이게 마지막 메시지라면 그대로 메시지 렌더링
+        if messages.count - 1 == indexPath.row {
+            cell.timeLabel.isHidden = false
+            cell.dateLine.isHidden = true
+            return cell
+        }
+        
+        // 다음 메시지도 나의 메시지라면,
+        let currentMessage = self.messages[indexPath.row]
+        let nextMessage = self.messages[indexPath.row + 1]
+        
+        if currentMessage.user.id == nextMessage.user.id {
+            // 다음 메시지 셀과, 현재 메시지 셀의 시간이 서로 같다면,
+            let currentMessageTimeLabel = DateUtil.shared.naturalTimeString(date: currentMessage.createdAt)
+            let nextMessageTimeLabel = DateUtil.shared.naturalTimeString(date: nextMessage.createdAt)
+            
+            if currentMessageTimeLabel == nextMessageTimeLabel {
+                // 현재 메시지 셀의 시간은 지워준다.
+                cell.timeLabel.isHidden = true
+            }else {
+                // 그렇지 않다면 셀의 시간은 남겨준다
+                cell.timeLabel.isHidden = false
+            }
+            
+            
+        }
+        
         return cell
     }
     
@@ -171,17 +270,37 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
 
 extension ChatControllerV2: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let stringHeight = self.messages[indexPath.row].text.height(withConstrainedWidth: self.view.frame.width * 0.7 - 18, font: UIFont.systemFont(ofSize: 16))
         
+        
+        if indexPath.row == 0 {
+            // 첫번째 메시지일 경우
+            // 날짜선을 표기해주어야 하기 때문에, 높이를 30정도 더 준다
+            return CGSize(width: self.view.frame.width, height: stringHeight + 48)
+        }
+        
+        
+        let currentMessage = self.messages[indexPath.row]
+        let prevMessage = self.messages[indexPath.row - 1]
+        
+        if !DateUtil.shared.compareTwoDate(date1: currentMessage.createdAt, date2: prevMessage.createdAt) {
+            // 이전 메시지와 날짜가 다를 경우
+            // 날짜선을 표기해주어야 하기 때문에, 높이를 30정도 더 준다
+            return CGSize(width: self.view.frame.width, height: stringHeight + 48)
+        }
+        
+        
+        
+        // 상대편 메시지일때
         if self.messages[indexPath.row].user.id != RootConstants.shared.rootController.user?.id {
-            
-            let stringHeight = self.messages[indexPath.row].text.height(withConstrainedWidth: self.view.frame.width * 0.7 - 18, font: UIFont.systemFont(ofSize: 16))
             
             
             
             return CGSize(width: self.view.frame.width, height: stringHeight + 18)
         }
         
-        let stringHeight = self.messages[indexPath.row].text.height(withConstrainedWidth: self.view.frame.width * 0.7 - 18, font: UIFont.systemFont(ofSize: 16))
+        // 내 메시지일때
+        
         
         return CGSize(width: self.view.frame.width, height: stringHeight + 18)
     }

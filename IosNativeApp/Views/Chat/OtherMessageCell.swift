@@ -10,6 +10,7 @@ import SDWebImage
 
 class OtherMessageCell: UICollectionViewCell {
     // MARK: Properties
+    
     var message:MessageModel? {
         didSet {
             guard let message = message else { return }
@@ -19,8 +20,18 @@ class OtherMessageCell: UICollectionViewCell {
             
             self.text.text = message.text
             
+            
+            self.timeLabel.text = DateUtil.shared.naturalTimeString(date: message.createdAt)
+            
+            self.dateLine.dateLabel.text = DateUtil.shared.naturalDateStringTypeTwo(date: message.createdAt)
+            
         }
     }
+    
+    lazy var dateLine:DateLineView = {
+        let dv = DateLineView()
+        return dv
+    }()
     
     lazy var profileImageView:UIImageView = {
         let iv = UIImageView()
@@ -46,6 +57,11 @@ class OtherMessageCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var timeLabel:DateLabel = {
+        let label = DateLabel()
+        return label
+    }()
+    
     // MARK: Lifecycles
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -59,17 +75,15 @@ class OtherMessageCell: UICollectionViewCell {
     
     // MARK: Configures
     func configureUI(){
+        
         backgroundColor = .systemBackground
         
-        addSubview(profileImageView)
-        profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
+        addView(view: dateLine, left: nil, top: 10, right: nil, bottom: nil, width: nil, height: nil, centerX: true, centerY: false)
         
         addSubview(bubble)
         bubble.translatesAutoresizingMaskIntoConstraints = false
-        bubble.topAnchor.constraint(equalTo: profileImageView.topAnchor, constant: 10).isActive = true
-        bubble.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 12).isActive = true
+        bubble.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        bubble.leftAnchor.constraint(equalTo: leftAnchor, constant: 62).isActive = true
         bubble.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 0.7).isActive = true
         
         addSubview(text)
@@ -78,6 +92,18 @@ class OtherMessageCell: UICollectionViewCell {
         text.leftAnchor.constraint(equalTo: bubble.leftAnchor, constant: 10).isActive = true
         text.rightAnchor.constraint(equalTo: bubble.rightAnchor, constant: -8).isActive = true
         text.bottomAnchor.constraint(equalTo: bubble.bottomAnchor, constant: -8).isActive = true
+        
+        addSubview(timeLabel)
+        timeLabel.translatesAutoresizingMaskIntoConstraints = false
+        timeLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor, constant: 0).isActive = true
+        timeLabel.leftAnchor.constraint(equalTo: bubble.rightAnchor, constant: 7).isActive = true
+        
+        
+        addSubview(profileImageView)
+        profileImageView.translatesAutoresizingMaskIntoConstraints = false
+        profileImageView.topAnchor.constraint(equalTo: bubble.topAnchor, constant: -10).isActive = true
+        
+        profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         
         
     }
