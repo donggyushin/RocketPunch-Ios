@@ -9,13 +9,13 @@ import Foundation
 
 
 struct MessageModel {
-    var messageId:Float
+    var messageId:Int
     var user:UserModel
     var createdAt: Date
     var text:String
     
     init(dict:[String:Any]) {
-        let messageId = dict["messageId"] as? Float ?? 0
+        let messageId = dict["messageId"] as? Int ?? 0
         let userDict = dict["user"] as? [String:Any] ?? ["key":"value"]
         let createdAtString = dict["createdAt"] as? String ?? ""
         let text = dict["text"] as? String ?? ""

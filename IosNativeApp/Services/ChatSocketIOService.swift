@@ -15,6 +15,7 @@ protocol ChatSocketIOServiceProtocol:class {
     func initUsers(users:[UserModel])
     func initCursors(cursors:[CursorModel])
     func newMessage(message:MessageModel)
+    func cursorUpdated(cursors:[CursorModel])
 }
 
 class ChatSocketIOService: NSObject {
@@ -93,7 +94,6 @@ class ChatSocketIOService: NSObject {
         
         socket.on("new_message") { (dataArray, _) in
             guard let data = dataArray[0] as? [String:Any] else { return }
-            print("received new data: \(data)")
             guard let ok = data["ok"] as? Bool else { return }
             if !ok {
                 guard let errorMessage = data["message"] as? String else { return }
@@ -103,6 +103,20 @@ class ChatSocketIOService: NSObject {
                 let message = MessageModel(dict: messageDict)
                 self.delegate?.newMessage(message: message)
             }
+        }
+        
+        socket.on("cursor_updated") { (dataArray, _) in
+            guard let data = dataArray[0] as? [String:Any] else { return }
+            guard let ok = data["ok"] as? Bool else { return }
+            if !ok { return }
+            guard let cursorsDict = data["cursors"] as? [[String:Any]] else { return }
+            var cursors:[CursorModel] = []
+            for cursorDict in cursorsDict {
+                let cursor = CursorModel(dict: cursorDict)
+                cursors.append(cursor)
+            }
+            self.delegate?.cursorUpdated(cursors: cursors)
+            
         }
         
     }
@@ -118,6 +132,10 @@ class ChatSocketIOService: NSObject {
     func sendMessage(roomId:String, text:String) {
         guard let token = DeviceDataService.shared.gettingDeviceData(key: AuthConstants.AUTH_TOKEN) else { return }
         self.socket.emit("new_message", ["roomId":roomId, "userToken": token, "text": text])
+    }
+    
+    func readMessage(roomId:String, userId:String, messageId:String) {
+        socket.emit("user_read_message", ["roomId":roomId, "userId":userId, "messageId":messageId])
     }
 
     

@@ -28,6 +28,7 @@ class OtherMessageCell: UICollectionViewCell {
         }
     }
     
+    
     lazy var dateLine:DateLineView = {
         let dv = DateLineView()
         return dv
@@ -43,7 +44,7 @@ class OtherMessageCell: UICollectionViewCell {
         return iv
     }()
     
-    private lazy var bubble:UIView = {
+    lazy var bubble:UIView = {
         let view = UIView()
         view.backgroundColor = .secondarySystemBackground
         view.layer.cornerRadius = 8
@@ -59,6 +60,11 @@ class OtherMessageCell: UICollectionViewCell {
     
     lazy var timeLabel:DateLabel = {
         let label = DateLabel()
+        return label
+    }()
+    
+    lazy var unreadLabel:UnreadMessageLabel = {
+        let label = UnreadMessageLabel()
         return label
     }()
     
@@ -105,6 +111,11 @@ class OtherMessageCell: UICollectionViewCell {
         
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         
+        
+        addSubview(unreadLabel)
+        unreadLabel.translatesAutoresizingMaskIntoConstraints = false
+        unreadLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor).isActive = true
+        unreadLabel.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 4).isActive = true
         
     }
 }

@@ -24,12 +24,13 @@ class MyMessageCell: UICollectionViewCell {
         }
     }
     
+    
     lazy var dateLine:DateLineView = {
         let dv = DateLineView()
         return dv
     }()
     
-    private lazy var bubble:UIView = {
+    lazy var bubble:UIView = {
         let view = UIView()
         view.backgroundColor = .systemBlue
         view.layer.cornerRadius = 8 
@@ -48,6 +49,12 @@ class MyMessageCell: UICollectionViewCell {
         let label = DateLabel()
         return label
     }()
+    
+    lazy var unreadLabel:UnreadMessageLabel = {
+        let label = UnreadMessageLabel()
+        return label
+    }()
+    
     
     // MARK: Lifecycles
     override init(frame: CGRect) {
@@ -84,5 +91,11 @@ class MyMessageCell: UICollectionViewCell {
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
         timeLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor).isActive = true
         timeLabel.rightAnchor.constraint(equalTo: bubble.leftAnchor, constant: -7).isActive = true
+        
+        
+        addSubview(unreadLabel)
+        unreadLabel.translatesAutoresizingMaskIntoConstraints = false
+        unreadLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor).isActive = true
+        unreadLabel.rightAnchor.constraint(equalTo: timeLabel.leftAnchor, constant: -4).isActive = true
     }
 }

@@ -45,6 +45,13 @@ class ChatControllerV2: UIViewController  {
                 self.collectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: UICollectionView.ScrollPosition.centeredVertically, animated: false)
             }
             
+            // 새로운 메시지가 들어올때마다 가장 마지막 메시지를 읽는다.
+            if let me = RootConstants.shared.rootController.user {
+                let lastMessage = self.messages[lastIndex]
+                self.chatSocket.readMessage(roomId: self.roomId, userId: me.id, messageId: String(lastMessage.messageId))
+            }
+            
+            
         }
     }
     
@@ -149,7 +156,22 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: otherMessageIdentifier, for: indexPath) as! OtherMessageCell
             cell.dateLine.isHidden = true
-            cell.timeLabel.isHidden = false 
+            
+            // 읽음 처리
+            var totalNumber = self.users.count
+            for cursor in self.cursors {
+                if cursor.recentReadMessageId >= self.messages[indexPath.row].messageId {
+                    totalNumber = totalNumber - 1
+                }
+            }
+            
+            if totalNumber == 0 {
+                cell.unreadLabel.text = ""
+            }else {
+                cell.unreadLabel.text = "\(totalNumber)"
+            }
+            
+            
             // 첫 메시지 이면 날짜 구분선이 붙은 메시지 셀을 반환해준다.
             if indexPath.row == 0 {
                 cell.dateLine.isHidden = false
@@ -173,7 +195,7 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             let message = self.messages[indexPath.row]
             cell.message = message
             cell.profileImageView.isHidden = false
-            cell.timeLabel.isHidden = false
+
             
             if self.messages.count - 1 != indexPath.row {
                 
@@ -187,13 +209,11 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
                     let currentMessageTimeString = DateUtil.shared.naturalTimeString(date: message.createdAt)
                     let nextMessageTimeString = DateUtil.shared.naturalTimeString(date: nextMessage.createdAt)
                     if currentMessageTimeString == nextMessageTimeString {
-                        cell.timeLabel.isHidden = true
-                    }else {
-                        cell.timeLabel.isHidden = false
+
+                        cell.timeLabel.text = ""
                     }
                 }else {
                     cell.profileImageView.isHidden = false
-                    cell.timeLabel.isHidden = false
                 }
                 
                 
@@ -206,7 +226,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             
             // 사진이랑 시간 둘다 렌더링
             cell.profileImageView.isHidden = false
-            cell.timeLabel.isHidden = false
             
             return cell
         }
@@ -214,8 +233,27 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
         // 내가 보낸 메시지일때
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: myMessageIdentifier, for: indexPath) as! MyMessageCell
         cell.message = self.messages[indexPath.row]
-        cell.timeLabel.isHidden = false
+        
+        // 읽음 처리하자
+        var totalNumber = self.users.count
+        for cursor in self.cursors {
+            if cursor.recentReadMessageId >= cell.message!.messageId {
+                totalNumber = totalNumber - 1
+            }
+        }
+        
+        if totalNumber <= 0 {
+            cell.unreadLabel.text = ""
+        }else {
+            cell.unreadLabel.text = "\(totalNumber)"
+        }
+        
+        
+        
+
+        
         cell.dateLine.isHidden = true
+        
         
         // 만약에 첫번째 메시지라면 dateLine을 렌더링,
         if indexPath.row == 0 {
@@ -236,8 +274,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
         
         // 이게 마지막 메시지라면 그대로 메시지 렌더링
         if messages.count - 1 == indexPath.row {
-            cell.timeLabel.isHidden = false
-            cell.dateLine.isHidden = true
             return cell
         }
         
@@ -252,13 +288,8 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             
             if currentMessageTimeLabel == nextMessageTimeLabel {
                 // 현재 메시지 셀의 시간은 지워준다.
-                cell.timeLabel.isHidden = true
-            }else {
-                // 그렇지 않다면 셀의 시간은 남겨준다
-                cell.timeLabel.isHidden = false
+                cell.timeLabel.text = ""
             }
-            
-            
         }
         
         return cell
@@ -350,6 +381,10 @@ extension ChatControllerV2 {
 }
 
 extension ChatControllerV2:ChatSocketIOServiceProtocol {
+    func cursorUpdated(cursors: [CursorModel]) {
+        self.cursors = cursors
+    }
+    
     func newMessage(message: MessageModel) {
         self.messages.append(message)
     }

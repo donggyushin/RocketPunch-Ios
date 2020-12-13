@@ -43,6 +43,7 @@
 		70807E172585E3A1004DFA4E /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E162585E3A1004DFA4E /* DateUtil.swift */; };
 		70807E1A2585EAA2004DFA4E /* DateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E192585EAA2004DFA4E /* DateLabel.swift */; };
 		70807E25258607B8004DFA4E /* DateLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E24258607B8004DFA4E /* DateLineView.swift */; };
+		709B33D22586854E00B8A2FA /* UnreadMessageLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709B33D12586854E00B8A2FA /* UnreadMessageLabel.swift */; };
 		70C807482584838B00DA991B /* ChatSocketIOService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C807472584838B00DA991B /* ChatSocketIOService.swift */; };
 		70C8074B2584B79D00DA991B /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8074A2584B79D00DA991B /* MessageModel.swift */; };
 		70C8074F2584BDC100DA991B /* ChatTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C8074E2584BDC100DA991B /* ChatTextInput.swift */; };
@@ -91,6 +92,7 @@
 		70807E162585E3A1004DFA4E /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		70807E192585EAA2004DFA4E /* DateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabel.swift; sourceTree = "<group>"; };
 		70807E24258607B8004DFA4E /* DateLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLineView.swift; sourceTree = "<group>"; };
+		709B33D12586854E00B8A2FA /* UnreadMessageLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadMessageLabel.swift; sourceTree = "<group>"; };
 		70C807472584838B00DA991B /* ChatSocketIOService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketIOService.swift; sourceTree = "<group>"; };
 		70C8074A2584B79D00DA991B /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		70C8074E2584BDC100DA991B /* ChatTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatTextInput.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				7050A2622584E09600E1473C /* MyMessageCell.swift */,
 				7050A26C25851F6F00E1473C /* OtherMessageCell.swift */,
 				70807E24258607B8004DFA4E /* DateLineView.swift */,
+				709B33D12586854E00B8A2FA /* UnreadMessageLabel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				70807E25258607B8004DFA4E /* DateLineView.swift in Sources */,
 				707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */,
 				7050A2602584DAD700E1473C /* ChatControllerV2.swift in Sources */,
+				709B33D22586854E00B8A2FA /* UnreadMessageLabel.swift in Sources */,
 				702811D32580E6480037E9BF /* SceneDelegate.swift in Sources */,
 				70C8074B2584B79D00DA991B /* MessageModel.swift in Sources */,
 				706FC1772580F1B6000A97E5 /* TextInputTypeOne.swift in Sources */,
