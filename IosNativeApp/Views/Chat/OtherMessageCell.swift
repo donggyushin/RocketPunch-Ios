@@ -44,18 +44,21 @@ class OtherMessageCell: UICollectionViewCell {
         return iv
     }()
     
-    lazy var bubble:UIView = {
-        let view = UIView()
-        view.backgroundColor = .secondarySystemBackground
-        view.layer.cornerRadius = 8
-        return view
-    }()
     
-    private lazy var text:UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 16)
-        label.numberOfLines = 0
-        return label
+    lazy var text:UITextView = {
+        let tv = UITextView()
+        tv.font = UIFont.systemFont(ofSize: 16)
+        tv.isEditable = false
+        tv.dataDetectorTypes = .link
+        tv.isSelectable = true
+        tv.backgroundColor = .secondarySystemBackground
+        tv.layer.cornerRadius = 8
+        tv.textContainerInset = UIEdgeInsets(top: 5, left: 6, bottom: 5, right: 6)
+        tv.isScrollEnabled = false
+        let fixedWidth = self.frame.width * 0.7
+        let newSize = tv.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
+        tv.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        return tv
     }()
     
     lazy var timeLabel:DateLabel = {
@@ -84,37 +87,32 @@ class OtherMessageCell: UICollectionViewCell {
         
         backgroundColor = .systemBackground
         
-        addView(view: dateLine, left: nil, top: 10, right: nil, bottom: nil, width: nil, height: nil, centerX: true, centerY: false)
+        addView(view: dateLine, left: nil, top: 50, right: nil, bottom: nil, width: nil, height: nil, centerX: true, centerY: false)
         
-        addSubview(bubble)
-        bubble.translatesAutoresizingMaskIntoConstraints = false
-        bubble.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        bubble.leftAnchor.constraint(equalTo: leftAnchor, constant: 62).isActive = true
-        bubble.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 0.7).isActive = true
         
         addSubview(text)
         text.translatesAutoresizingMaskIntoConstraints = false
-        text.topAnchor.constraint(equalTo: bubble.topAnchor, constant: 8).isActive = true
-        text.leftAnchor.constraint(equalTo: bubble.leftAnchor, constant: 10).isActive = true
-        text.rightAnchor.constraint(equalTo: bubble.rightAnchor, constant: -8).isActive = true
-        text.bottomAnchor.constraint(equalTo: bubble.bottomAnchor, constant: -8).isActive = true
+        text.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        text.leftAnchor.constraint(equalTo: leftAnchor, constant: 62).isActive = true 
+        text.widthAnchor.constraint(lessThanOrEqualToConstant: frame.width * 0.7).isActive = true
+        
         
         addSubview(timeLabel)
         timeLabel.translatesAutoresizingMaskIntoConstraints = false
-        timeLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor, constant: 0).isActive = true
-        timeLabel.leftAnchor.constraint(equalTo: bubble.rightAnchor, constant: 7).isActive = true
+        timeLabel.bottomAnchor.constraint(equalTo: text.bottomAnchor, constant: 0).isActive = true
+        timeLabel.leftAnchor.constraint(equalTo: text.rightAnchor, constant: 7).isActive = true
         
         
         addSubview(profileImageView)
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
-        profileImageView.topAnchor.constraint(equalTo: bubble.topAnchor, constant: -10).isActive = true
+        profileImageView.topAnchor.constraint(equalTo: text.topAnchor, constant: -10).isActive = true
         
         profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8).isActive = true
         
         
         addSubview(unreadLabel)
         unreadLabel.translatesAutoresizingMaskIntoConstraints = false
-        unreadLabel.bottomAnchor.constraint(equalTo: bubble.bottomAnchor).isActive = true
+        unreadLabel.bottomAnchor.constraint(equalTo: text.bottomAnchor).isActive = true
         unreadLabel.leftAnchor.constraint(equalTo: timeLabel.rightAnchor, constant: 4).isActive = true
         
     }

@@ -217,6 +217,8 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: myMessageIdentifier, for: indexPath) as! MyMessageCell
         cell.message = self.messages[indexPath.row]
         
+        
+        
         // 읽음 처리하자
         var totalNumber = self.users.count
         for cursor in self.cursors {
@@ -278,13 +280,13 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
 
 extension ChatControllerV2: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let stringHeight = self.messages[indexPath.row].text.height(withConstrainedWidth: self.view.frame.width * 0.7 - 18, font: UIFont.systemFont(ofSize: 16))
+        let stringHeight = self.messages[indexPath.row].text.height(withConstrainedWidth: self.view.frame.width * 0.7 - 20, font: UIFont.systemFont(ofSize: 16)) + 20
         
         
         if indexPath.row == 0 {
             // 첫번째 메시지일 경우
             // 날짜선을 표기해주어야 하기 때문에, 높이를 30정도 더 준다
-            return CGSize(width: self.view.frame.width, height: stringHeight + 48)
+            return CGSize(width: self.view.frame.width, height: stringHeight + 100)
         }
         
         
@@ -294,7 +296,7 @@ extension ChatControllerV2: UICollectionViewDelegateFlowLayout {
         if !DateUtil.shared.compareTwoDate(date1: currentMessage.createdAt, date2: prevMessage.createdAt) {
             // 이전 메시지와 날짜가 다를 경우
             // 날짜선을 표기해주어야 하기 때문에, 높이를 30정도 더 준다
-            return CGSize(width: self.view.frame.width, height: stringHeight + 48)
+            return CGSize(width: self.view.frame.width, height: stringHeight + 100)
         }
         
         
@@ -304,17 +306,18 @@ extension ChatControllerV2: UICollectionViewDelegateFlowLayout {
             
             
             
-            return CGSize(width: self.view.frame.width, height: stringHeight + 18)
+            return CGSize(width: self.view.frame.width, height: stringHeight)
         }
         
         // 내 메시지일때
         
         
-        return CGSize(width: self.view.frame.width, height: stringHeight + 18)
+        return CGSize(width: self.view.frame.width, height: stringHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        
+        return 6
     }
 }
 
