@@ -55,9 +55,8 @@ class OtherMessageCell: UICollectionViewCell {
         tv.layer.cornerRadius = 8
         tv.textContainerInset = UIEdgeInsets(top: 5, left: 6, bottom: 5, right: 6)
         tv.isScrollEnabled = false
-        let fixedWidth = self.frame.width * 0.7
-        let newSize = tv.sizeThatFits(CGSize(width: fixedWidth, height: CGFloat.greatestFiniteMagnitude))
-        tv.frame.size = CGSize(width: max(newSize.width, fixedWidth), height: newSize.height)
+        tv.translatesAutoresizingMaskIntoConstraints = true
+        tv.sizeToFit()
         return tv
     }()
     
