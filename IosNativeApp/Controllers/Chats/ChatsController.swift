@@ -75,6 +75,43 @@ class ChatsController: UICollectionViewController {
         // Configure the cell
         cell.chatRoom = self.chatRooms[indexPath.row]
         cell.delegate = self
+        cell.unreadBadgeView.isHidden = false
+        
+        // cursor 를 이용해서 안읽은 메시지가 몇개 있는지를 계산한다.
+        if let me = RootConstants.shared.rootController.user {
+            let cursors = self.chatRooms[indexPath.row].cursors
+            let filteredCursors = cursors.filter { (cursor) -> Bool in
+                if cursor.user.id == me.id {
+                    return true
+                }else {
+                    return false
+                }
+            }
+            
+            if filteredCursors.count != 0 {
+                let myCursor = filteredCursors[0]
+                var unreadMessageNumber = 0
+                
+                for message in self.chatRooms[indexPath.row].messages {
+                    if message.messageId > myCursor.recentReadMessageId {
+                        unreadMessageNumber = unreadMessageNumber + 1
+                    }
+                }
+                
+                
+                if unreadMessageNumber == 0 {
+                    cell.unreadBadgeView.isHidden = true 
+                }
+                cell.unreadBadgeView.numberLabel.text = "\(unreadMessageNumber)"
+                
+            }
+            
+        }else {
+            cell.unreadBadgeView.isHidden = true
+        }
+        
+        
+        
         return cell
     }
 

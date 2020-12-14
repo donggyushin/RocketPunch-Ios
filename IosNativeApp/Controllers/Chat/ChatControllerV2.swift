@@ -152,8 +152,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
         // 다른 사람이 보낸 메시지 일때
         if self.messages[indexPath.row].user.id != RootConstants.shared.rootController.user?.id {
             
-            
-            
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: otherMessageIdentifier, for: indexPath) as! OtherMessageCell
             cell.dateLine.isHidden = true
             
@@ -170,8 +168,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             }else {
                 cell.unreadLabel.text = "\(totalNumber)"
             }
-            
-            
             // 첫 메시지 이면 날짜 구분선이 붙은 메시지 셀을 반환해준다.
             if indexPath.row == 0 {
                 cell.dateLine.isHidden = false
@@ -183,13 +179,7 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
                 if !DateUtil.shared.compareTwoDate(date1: currentMessage.createdAt, date2: prevMessage.createdAt) {
                     cell.dateLine.isHidden = false
                 }
-                
             }
-            
-            
-            
-            
-            
             
             
             let message = self.messages[indexPath.row]
@@ -215,18 +205,11 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
                 }else {
                     cell.profileImageView.isHidden = false
                 }
-                
-                
-                
                 return cell
-                
-                
             }
             // 만약 마지막 메시지이다
-            
             // 사진이랑 시간 둘다 렌더링
             cell.profileImageView.isHidden = false
-            
             return cell
         }
         
@@ -248,10 +231,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             cell.unreadLabel.text = "\(totalNumber)"
         }
         
-        
-        
-
-        
         cell.dateLine.isHidden = true
         
         
@@ -268,8 +247,6 @@ extension ChatControllerV2:UICollectionViewDelegate, UICollectionViewDataSource 
             }
             
         }
-        
-        
         
         
         // 이게 마지막 메시지라면 그대로 메시지 렌더링

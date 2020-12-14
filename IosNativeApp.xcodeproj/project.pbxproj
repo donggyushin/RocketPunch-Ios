@@ -39,6 +39,7 @@
 		707687D82583992700C7E519 /* UserProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707687D72583992700C7E519 /* UserProfileImageView.swift */; };
 		707D260925827C2D00B784C9 /* UserCellTypeOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707D260825827C2D00B784C9 /* UserCellTypeOne.swift */; };
 		707DD43825812A37002CDBC8 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707DD43725812A37002CDBC8 /* ImagePicker.swift */; };
+		707F4536258794180080EE77 /* UnreadBadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F4535258794180080EE77 /* UnreadBadgeView.swift */; };
 		70807E142585DA66004DFA4E /* ChatRoomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E132585DA66004DFA4E /* ChatRoomCell.swift */; };
 		70807E172585E3A1004DFA4E /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E162585E3A1004DFA4E /* DateUtil.swift */; };
 		70807E1A2585EAA2004DFA4E /* DateLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70807E192585EAA2004DFA4E /* DateLabel.swift */; };
@@ -88,6 +89,7 @@
 		707687D72583992700C7E519 /* UserProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageView.swift; sourceTree = "<group>"; };
 		707D260825827C2D00B784C9 /* UserCellTypeOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCellTypeOne.swift; sourceTree = "<group>"; };
 		707DD43725812A37002CDBC8 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		707F4535258794180080EE77 /* UnreadBadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnreadBadgeView.swift; sourceTree = "<group>"; };
 		70807E132585DA66004DFA4E /* ChatRoomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomCell.swift; sourceTree = "<group>"; };
 		70807E162585E3A1004DFA4E /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 		70807E192585EAA2004DFA4E /* DateLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateLabel.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				70807E132585DA66004DFA4E /* ChatRoomCell.swift */,
+				707F4535258794180080EE77 /* UnreadBadgeView.swift */,
 			);
 			path = Chats;
 			sourceTree = "<group>";
@@ -434,6 +437,7 @@
 				70D7B88F258120E50022E3E3 /* DataService.swift in Sources */,
 				702811D52580E6480037E9BF /* ViewController.swift in Sources */,
 				70807E1A2585EAA2004DFA4E /* DateLabel.swift in Sources */,
+				707F4536258794180080EE77 /* UnreadBadgeView.swift in Sources */,
 				7050A2632584E09600E1473C /* MyMessageCell.swift in Sources */,
 				706FC17C2580F548000A97E5 /* UIViewControllerExtensions.swift in Sources */,
 				7072D745258259E600A30009 /* EndpointConstants.swift in Sources */,

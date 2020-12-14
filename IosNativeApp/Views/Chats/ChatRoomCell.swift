@@ -51,6 +51,11 @@ class ChatRoomCell: UICollectionViewCell {
         return label
     }()
     
+    lazy var unreadBadgeView:UnreadBadgeView = {
+        let view = UnreadBadgeView()
+        return view 
+    }()
+    
     private lazy var divider:UIView = {
         let view = UIView()
         view.heightAnchor.constraint(equalToConstant: 1).isActive = true
@@ -83,9 +88,14 @@ class ChatRoomCell: UICollectionViewCell {
         recentMessage.translatesAutoresizingMaskIntoConstraints = false
         recentMessage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10).isActive = true
         recentMessage.leftAnchor.constraint(equalTo: nameLabel.leftAnchor).isActive = true
+        recentMessage.rightAnchor.constraint(equalTo: rightAnchor, constant: -90).isActive = true 
         
         addView(view: dayString, left: nil, top: nil, right: 20, bottom: nil, width: nil, height: nil, centerX: false, centerY: false)
-        dayString.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true 
+        dayString.topAnchor.constraint(equalTo: nameLabel.topAnchor).isActive = true
+        
+        
+        addView(view: unreadBadgeView, left: nil, top: nil, right: 20, bottom: nil, width: nil, height: nil, centerX: false, centerY: false)
+        unreadBadgeView.topAnchor.constraint(equalTo: dayString.bottomAnchor, constant: 10).isActive = true 
         
         addView(view: divider, left: nil, top: nil, right: 0, bottom: 0, width: nil, height: nil, centerX: false, centerY: false)
         divider.leftAnchor.constraint(equalTo: nameLabel.leftAnchor).isActive = true 
