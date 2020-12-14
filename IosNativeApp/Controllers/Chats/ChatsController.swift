@@ -184,6 +184,7 @@ extension ChatsController:ChatRoomCellProtocol {
     func chatRoomCell(sender: ChatRoomCell) {
         guard let roomId = sender.chatRoom?.id else { return }
         guard let partner = sender.partner else { return }
+        sender.unreadBadgeView.isHidden = true 
         let chatController = ChatControllerV2(roomId: roomId, partnerName: partner.id)
         navigationController?.pushViewController(chatController, animated: true)
     }
