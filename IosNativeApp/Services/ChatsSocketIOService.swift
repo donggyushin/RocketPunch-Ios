@@ -18,7 +18,7 @@ class ChatsSocketIOService:NSObject {
     
     weak var delegate:ChatsSocketIOServiceProtocol?
     
-    var manager = SocketManager(socketURL: URL(string: "http://192.168.0.42:9091")!)
+    var manager = SocketManager(socketURL: URL(string: EndpointConstants.shared.ROCKET_PUNCH_SOCKET)!)
     var socket:SocketIOClient!
     
     override init() {
