@@ -12,4 +12,5 @@ class EndpointConstants {
     
     let ROCKET_PUNCH_API = "http://ec2-3-88-114-108.compute-1.amazonaws.com:9090/api"
     let ROCKET_PUNCH_SOCKET = "http://ec2-3-88-114-108.compute-1.amazonaws.com:9091"
+    
 }

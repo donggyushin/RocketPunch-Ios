@@ -47,8 +47,11 @@ class ChatControllerV2: UIViewController  {
             
             // 새로운 메시지가 들어올때마다 가장 마지막 메시지를 읽는다.
             if let me = RootConstants.shared.rootController.user {
-                let lastMessage = self.messages[lastIndex]
-                self.chatSocket.readMessage(roomId: self.roomId, userId: me.id, messageId: String(lastMessage.messageId))
+                
+                if messages.count > 0 {
+                    let lastMessage = self.messages[lastIndex]
+                    self.chatSocket.readMessage(roomId: self.roomId, userId: me.id, messageId: String(lastMessage.messageId))
+                }
             }
             
             
