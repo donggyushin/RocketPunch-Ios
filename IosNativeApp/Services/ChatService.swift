@@ -18,7 +18,8 @@ class ChatService {
         }
         userIdsQuery.remove(at: userIdsQuery.index(before: userIdsQuery.endIndex))
         
-        let urlString = "\(EndpointConstants.shared.ROCKET_PUNCH_API)/chat/id?userIdsString=\(userIdsQuery)"
+        var urlString = "\(EndpointConstants.shared.ROCKET_PUNCH_API)/chat/id?userIdsString=\(userIdsQuery)"
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         guard let url = URL(string: urlString) else { return }
         AF.request(url, method: HTTPMethod.get, parameters: nil, encoding: JSONEncoding.default, headers: nil, interceptor: nil, requestModifier: nil).responseJSON { (response) in
             switch response.result {

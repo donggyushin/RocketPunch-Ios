@@ -73,8 +73,10 @@ class UserService {
         AF.request(url, method: HTTPMethod.post, parameters: parameters, encoding: JSONEncoding.default, headers: nil, interceptor: nil, requestModifier: nil).responseJSON { (response) in
             switch response.result {
             case .failure(let error):
+                print("lkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjdlkasjd")
                 return completion(error, nil, false, nil, nil)
             case .success(let value):
+                print("value: \(value)")
                 guard let value = value as? [String:Any] else { return }
                 guard let ok = value["ok"] as? Bool else { return }
                 if ok == false {
